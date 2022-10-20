@@ -1,19 +1,19 @@
-#program that transforms your face into a cartoon face
+# Program that transforms your face into a cartoon face
 
-#import relevant libaries
+# Import relevant libaries
 import cv2
 import numpy as np
 
-#read the image
+# Read the image
 img = cv2.imread("Icarus.jpg")
 
-#outer image
+# Outer image
 gray = cv2.cvColor(img, cv2.COLOR_BGR2GRAY)
 gray = cv2.medianBlur(gray, 5)
 edges = cv2.adaptiveThreshold(gray, 255,
                                 cv2.ADAPTIVE_THRESH_MEAN_C,
                                 cv2.THRESH_BINARY, 9, 9)
-#transform to cartoon
+# Transform to cartoon
 color = cv2.bilateralFilter(img, 9, 250, 250)
 cartoon = cv2. bitwise_and(color, color, mask=edges)
 
